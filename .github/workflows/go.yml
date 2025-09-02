@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
-        os: ['ubuntu-latest', 'ubuntu-18.04']
+        os: ['ubuntu-latest', 'ubuntu-22.04']
     steps:
     - uses: actions/checkout@v3
 
@@ -29,10 +29,10 @@ jobs:
         go-version: ${{ matrix.go_version }}
       
     - name: Build-DB
-      run: docker-compose build
+      run: docker compose build
       
     - name: Create-DB
-      run: docker-compose up -d
+      run: docker compose up -d
 
     - name: Test
       run: go test -v main_test.go      
@@ -46,7 +46,7 @@ jobs:
       run: go build -v main.go
       
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.0
+      uses: actions/upload-artifact@v4.6.2
       with:
     # Artifact name
         name: programa
