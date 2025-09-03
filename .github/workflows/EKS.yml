@@ -17,6 +17,10 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-2
 
+    - name: Fixar versão do provider AWS
+      run: |
+        echo 'provider "aws" { version = "~> 5.40.0" }' >> versions.tf
+
     - run: git clone https://github.com/Mataribeiro/Infra_CI_Kubernetes.git
 
     - name: HashiCorp - Setup Terraform
