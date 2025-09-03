@@ -22,9 +22,14 @@ jobs:
     - name: HashiCorp - Setup Terraform
       uses: hashicorp/setup-terraform@v2.0.3
 
+    - name: Limpar cache e lock
+      run: |
+        rm -rf Infra_CI_Kubernetes/env/Homolog/.terraform
+        rm -f Infra_CI_Kubernetes/env/Homolog/.terraform.lock.hcl
+
     - run: rm -rf .terraform
 
     - run: rm -rf .terraform.lock.hcl
     
-    - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog init
+    - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog init -upgrade
     - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog apply -auto-approve
