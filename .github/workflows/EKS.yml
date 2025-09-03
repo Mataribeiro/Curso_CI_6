@@ -27,5 +27,4 @@ jobs:
     - run: rm -rf .terraform.lock.hcl
     
     - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog init
-
     - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog apply -auto-approve
